@@ -44,7 +44,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
@@ -105,7 +105,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -151,7 +151,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "description": "Time shown is the **end** of each half hour",
       "fieldConfig": {
@@ -308,7 +308,7 @@
           "alias": "Usage",
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -350,7 +350,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "hide": false,
           "query": "import \"date\"\n\nfrom(bucket:\"$bucket\")\n|> range(start: date.sub(d: 25h, from: v.timeRangeStart), stop: v.timeRangeStop)\n|> filter(fn: (r) => r._measurement == \"${tariffs_measurement}\")\n|> filter(fn: (r) => r.price_type == \"standard-unit-rates\")\n|> filter(fn: (r) => r.tariff_code == \"${electricity_export_tariff}\")\n|> filter(fn: (r) => r[\"direction\"] == \"export\")\n|> filter(fn: (r) => r[\"energy_type\"] == \"electricity\")\n|> filter(fn: (r) => r._field == \"p/kWh_inc_vat\")\n|> map(fn: (r) => ({ r with \"export-unit-rates_£/kWh\": r._value / 100.0}))\n|> keep(columns: [\"_time\", \"export-unit-rates_£/kWh\"])\n\n\n  ",
@@ -359,7 +359,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "hide": false,
           "query": "import \"date\"\n\nfrom(bucket: \"${bucket}\")\n  |> range(start: date.sub(d: 25h, from: v.timeRangeStart), stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"${usage_measurement}\")\n  |> filter(fn: (r) => r[\"_field\"] == \"kWh\")\n  |> filter(fn: (r) => r[\"direction\"] == \"import\")\n  |> filter(fn: (r) => r[\"energy_type\"] == \"electricity\")\n  |> aggregateWindow(every: 30m, fn: mean, createEmpty: false)\n  |> fill(usePrevious: true)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> rename(columns: {_time: \"_stop\", _value: \"import_kWh\"})\n  |> group()",
@@ -368,7 +368,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "hide": false,
           "query": "import \"date\"\nfrom(bucket:\"$bucket\")\n|> range(start: date.sub(d: 25h, from: v.timeRangeStart), stop: v.timeRangeStop)\n|> filter(fn: (r) => r._measurement == \"${tariffs_measurement}\")\n|> filter(fn: (r) => r.price_type == \"standard-unit-rates\")\n|> filter(fn: (r) => r.tariff_code == \"${electricity_import_tariff}\")\n|> filter(fn: (r) => r[\"direction\"] == \"import\")\n|> filter(fn: (r) => r[\"energy_type\"] == \"electricity\")\n|> filter(fn: (r) => r._field == \"p/kWh_inc_vat\")\n|> map(fn: (r) => ({ r with \"import-unit-rates_£/kWh\": r._value / 100.0}))\n|> keep(columns: [\"_time\", \"import-unit-rates_£/kWh\"])\n\n",
@@ -381,7 +381,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
@@ -442,7 +442,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -488,7 +488,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
@@ -566,7 +566,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -627,7 +627,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
@@ -705,7 +705,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -780,7 +780,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
@@ -841,7 +841,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -888,7 +888,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
@@ -1023,7 +1023,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "hide": false,
           "query": "import \"timezone\"\n\noption location = timezone.location(name: \"Europe/London\")\n\nfrom(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"${usage_measurement}\")\n  |> filter(fn: (r) => r[\"_field\"] == \"kWh\")\n  |> filter(fn: (r) => r[\"direction\"] == \"export\")\n  |> filter(fn: (r) => r[\"energy_type\"] == \"electricity\")\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> aggregateWindow(every: 1d, fn: sum)\n  |> timeShift(duration: -1m)\n  |> truncateTimeColumn(unit: 1d)\n  |> keep(columns: [\"_time\", \"_value\"])\n  |> rename(columns: {_value: \"export\"})\n",
@@ -1033,7 +1033,7 @@
           "alias": "Usage",
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -1080,7 +1080,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
@@ -1141,7 +1141,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -1188,7 +1188,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
@@ -1266,7 +1266,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -1328,7 +1328,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
@@ -1406,7 +1406,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -1482,7 +1482,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
@@ -1543,7 +1543,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -1590,7 +1590,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+        "uid": "P951FEA4DE68E13C5"
       },
       "fieldConfig": {
         "defaults": {
@@ -1696,7 +1696,7 @@
           "alias": "Usage",
           "datasource": {
             "type": "influxdb",
-            "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+            "uid": "P951FEA4DE68E13C5"
           },
           "groupBy": [
             {
@@ -1861,7 +1861,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+          "uid": "P951FEA4DE68E13C5"
         },
         "definition": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"${tariffs_measurement}\")\n  |> filter(fn: (r) => r[\"energy_type\"] == \"electricity\")\n  |> filter(fn: (r) => r[\"direction\"] == \"import\")\n  |> keep(columns: [\"tariff_code\", \"display_name\", \"_value\"])\n  |> first()\n  |> map(fn: (r) => ({display_value: \"${r.display_name}#@#${r.tariff_code}\"}))",
         "hide": 0,
@@ -1884,7 +1884,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+          "uid": "P951FEA4DE68E13C5"
         },
         "definition": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"${tariffs_measurement}\")\n  |> filter(fn: (r) => r[\"energy_type\"] == \"electricity\")\n  |> filter(fn: (r) => r[\"direction\"] == \"export\")\n  |> keep(columns: [\"tariff_code\", \"display_name\", \"_value\"])\n  |> first()\n  |> map(fn: (r) => ({display_value: \"${r.display_name}#@#${r.tariff_code}\"}))",
         "hide": 0,
@@ -1907,7 +1907,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "c8229740-0e9a-4f46-a107-27c0a34b86fb"
+          "uid": "P951FEA4DE68E13C5"
         },
         "definition": "from(bucket: \"${bucket}\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"${tariffs_measurement}\")\n  |> filter(fn: (r) => r[\"energy_type\"] == \"gas\")\n  |> filter(fn: (r) => r[\"direction\"] == \"import\")\n  |> keep(columns: [\"tariff_code\", \"display_name\", \"_value\"])\n  |> first()\n  |> map(fn: (r) => ({display_value: \"${r.display_name}#@#${r.tariff_code}\"}))",
         "hide": 0,
